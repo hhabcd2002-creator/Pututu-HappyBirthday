@@ -145,3 +145,25 @@ button {
 button:active {
     transform: scale(0.95);
 }
+/* Floating Hearts Animation */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 20px;
+    color: #ffb7b2;
+    user-select: none;
+    z-index: -1; /* စာတွေရဲ့ နောက်မှာပဲ ရှိနေဖို့ */
+    animation: moveUp 4s linear forwards;
+    opacity: 0.8;
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
