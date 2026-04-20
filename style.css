@@ -1,74 +1,90 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400&display=swap');
 
 :root {
-    --primary-pink: #ff69b4;
-    --soft-pink: #ffb7b2;
-    --bg-color: #ffe4e1;
+    --primary-blue: #7fb3d5;
+    --soft-blue: #d6eaf8;
+    --dark-blue: #2e86c1;
+    --bg-color: #ebf5fb;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     background-color: var(--bg-color);
     font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
+    display: flex; justify-content: center;
     overflow-x: hidden;
 }
 
 .container {
-    width: 100%;
-    max-width: 450px;
-    background: white;
-    padding: 20px;
-    min-height: 100vh;
-    text-align: center;
-    position: relative;
-    z-index: 5; /* စာတွေကို အလယ်အလွှာမှာ ထားတယ် */
+    width: 100%; max-width: 450px;
+    background: white; padding: 20px;
+    min-height: 100vh; text-align: center;
+    position: relative; z-index: 5;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
 
 .timer-wrapper {
-    background: linear-gradient(135deg, var(--soft-pink), #fbc4ab);
-    padding: 12px;
-    border-radius: 50px;
-    margin-bottom: 20px;
-    color: white;
-    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary-blue), #aed6f1);
+    padding: 12px; border-radius: 50px; margin-bottom: 15px;
+    color: white; font-weight: 600;
+    box-shadow: 0 4px 10px rgba(127, 179, 213, 0.3);
+}
+
+.music-control #playBtn {
+    background: var(--soft-blue);
+    color: var(--dark-blue);
+    border: none; padding: 8px 20px;
+    border-radius: 50px; cursor: pointer;
+    font-size: 13px; font-weight: 600;
+}
+
+.main-title { color: var(--dark-blue); font-family: 'Fredoka', sans-serif; margin-top: 20px; }
+.sub-text { font-size: 13px; color: #7f8c8d; line-height: 1.6; }
+
+.section-title {
+    color: var(--dark-blue); font-size: 18px;
+    border-bottom: 2px solid var(--soft-blue);
+    display: inline-block; padding-bottom: 5px; margin-top: 20px;
 }
 
 .photo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;
 }
 
 .photo-item img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%; height: 180px; object-fit: cover;
+    border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* --- Floating Hearts CSS (အရှေ့ဆုံးမှာ ပေါ်ဖို့ ပြင်ထားတာ) --- */
+.wish-section {
+    margin-top: 40px; background: #f4faff;
+    padding: 20px; border-radius: 25px;
+    border: 2px dashed var(--primary-blue);
+}
+
+.message-box {
+    text-align: left; background: white;
+    padding: 15px; border-radius: 15px; font-size: 14px;
+    color: #34495e; line-height: 1.8;
+}
+
+#surpriseBtn {
+    background: var(--dark-blue);
+    color: white; border: none; padding: 12px 35px;
+    border-radius: 50px; margin-top: 25px;
+    font-family: 'Fredoka', sans-serif; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(46, 134, 193, 0.3);
+}
+
+/* --- Floating Hearts (Blue Edition) --- */
 .heart {
-    position: fixed;
-    bottom: -50px;
-    font-size: 24px; /* အရွယ်အစား နည်းနည်း ပိုကြီးလိုက်တယ် */
-    color: #ff1493; /* ပိုတောက်တဲ့ ပန်းရောင် */
-    z-index: 9999; /* အရှေ့ဆုံး အလွှာ */
-    user-select: none;
-    pointer-events: none;
+    position: fixed; bottom: -50px;
+    font-size: 24px; color: var(--primary-blue);
+    z-index: 9999; pointer-events: none;
     animation: moveUp 4s linear forwards;
 }
 
 @keyframes moveUp {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
 }
