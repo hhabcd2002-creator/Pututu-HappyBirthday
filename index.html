@@ -5,93 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To My Dearest Love ❤️</title>
     <link rel="stylesheet" href="style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400&family=Gochi+Hand&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
     <div class="container">
         <div class="timer-wrapper">
-             <div id="timer">Calculating time... ✨</div>
+             <div id="timer">Calculating... ✨</div>
         </div>
 
         <h1 class="main-title">To My Dearest Love ❤️</h1>
-        <p class="sub-text">On this special day, I want you to know how much you mean to me. Every moment with you is a gift I cherish deeply.</p>
+        <p class="sub-text">On this special day, I want you to know how much you mean to me. Every moment with you is a gift.</p>
 
         <h2 class="section-title">Our Beautiful Memories 📸</h2>
         
         <div class="photo-grid">
-            <div class="photo-item"><img src="1.jpg" alt="Memory 1"></div>
-            <div class="photo-item"><img src="2.jpg" alt="Memory 2"></div>
-            <div class="photo-item"><img src="3.jpg" alt="Memory 3"></div>
-            <div class="photo-item"><img src="4.jpg" alt="Memory 4"></div>
-            <div class="photo-item"><img src="5.jpg" alt="Memory 5"></div>
-            <div class="photo-item"><img src="6.jpg" alt="Memory 6"></div>
-            <div class="photo-item"><img src="7.jpg" alt="Memory 7"></div>
-            <div class="photo-item"><img src="8.jpg" alt="Memory 8"></div>
-            <div class="photo-item"><img src="9.jpg" alt="Memory 9"></div>
-            <div class="photo-item"><img src="10.jpg" alt="Memory 10"></div>
-            <div class="photo-item"><img src="11.jpg" alt="Memory 11"></div>
-            <div class="photo-item"><img src="12.jpg" alt="Memory 12"></div>
+            <div class="photo-item"><img src="1.jpg" alt="1"></div>
+            <div class="photo-item"><img src="2.jpg" alt="2"></div>
+            <div class="photo-item"><img src="3.jpg" alt="3"></div>
+            <div class="photo-item"><img src="4.jpg" alt="4"></div>
+            <div class="photo-item"><img src="5.jpg" alt="5"></div>
+            <div class="photo-item"><img src="6.jpg" alt="6"></div>
+            <div class="photo-item"><img src="7.jpg" alt="7"></div>
+            <div class="photo-item"><img src="8.jpg" alt="8"></div>
+            <div class="photo-item"><img src="9.jpg" alt="9"></div>
+            <div class="photo-item"><img src="10.jpg" alt="10"></div>
+            <div class="photo-item"><img src="11.jpg" alt="11"></div>
+            <div class="photo-item"><img src="12.jpg" alt="12"></div>
         </div>
 
         <div class="wish-section">
-            <h2 class="wish-title">💗 My Birthday Wish For You ✨</h2>
+            <h2 class="wish-title">💗 My Birthday Wish ✨</h2>
             <div class="message-box">
-                <p>သဲသဲလေး သို့...</p>
-                <br>
-                <p>Happy birthday ပါမေရေ... မောင့်အချစ်ကို ဒီ Website လေးကတစ်ဆင့် သိစေချင်ပါတယ်။ မွေးနေ့မှာ အရမ်းပျော်ရွှင်ပါစေ။ အမြဲတမ်းလည်း မောင့်အနားမှာ ရှိနေပေးပါနော်။ မောင် မင်းကို အများကြီး ချစ်တယ်!</p>
+                <p>သဲသဲလေး သို့...</p><br>
+                <p>Happy birthday ပါမေရေ... မောင့်အချစ်ကို ဒီ Website လေးကတစ်ဆင့် သိစေချင်ပါတယ်။ မွေးနေ့မှာ အရမ်းပျော်ရွှင်ပါစေ။ အမြဲတမ်းလည်း မောင့်အနားမှာ ရှိနေပေးပါနော်။</p>
             </div>
         </div>
 
-        <div class="button-wrapper">
-            <button id="surpriseBtn" onclick="celebrate()">Click for Surprise 🎁</button>
-        </div>
-        
-        <p style="margin-top: 30px; font-size: 12px; color: #aaa;">Made with ❤️ for You</p>
+        <button id="surpriseBtn" onclick="celebrate()">Click for Surprise 🎁</button>
+        <p style="margin-top: 30px; font-size: 10px; color: #ccc;">Made with ❤️</p>
     </div>
 
-    <script>
-        // 1. Countdown Logic
-        const targetDate = new Date("April 25, 2026 00:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            if (diff > 0) {
-                document.getElementById("timer").innerHTML = `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨`;
-            } else {
-                document.getElementById("timer").innerHTML = "🎉 Happy Birthday, My Love! 🎉";
-            }
-        }, 1000);
-
-        // 2. Floating Hearts Background
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
-        }
-        setInterval(createHeart, 600); // နှလုံးသားလေးတွေ ထွက်မယ့်နှုန်း
-
-        // 3. Surprise Confetti
-        function celebrate() {
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-            alert("Happy Birthday, My Love! 🎂🎉");
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
