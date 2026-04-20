@@ -14,7 +14,23 @@
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="container">
+    <div id="lockScreen">
+        <div class="lock-box">
+            <h1 class="lock-title">❤️ Happy Birthday <br> Pu Tu Tu ❤️</h1>
+            <p class="lock-subtitle">To see your special birthday surprise, please enter the password...</p>
+            
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            
+            <button class="unlock-btn" onclick="checkPassword()">
+                💙 Unlock Surprise
+            </button>
+
+            <p class="hint-text">💡 Hint: ပုတုတုမွေးနေ့ (DDMMYYYY)</p>
+            <p id="errorMsg" style="color: red; display: none; font-size: 12px; margin-top: 10px;">Password မှားနေပါတယ်နော်! ❌</p>
+        </div>
+    </div>
+
+    <div id="mainContent" class="container" style="display:none;">
         <div class="timer-wrapper">
              <div id="timer">Calculating... ✨</div>
         </div>
