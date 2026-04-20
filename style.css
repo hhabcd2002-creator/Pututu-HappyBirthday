@@ -1,4 +1,3 @@
-/* Custom Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400&family=Gochi+Hand&display=swap');
 
 :root {
@@ -9,9 +8,7 @@
     --white: #ffffff;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -21,19 +18,21 @@ body {
     font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
+    overflow-x: hidden; /* ဘေးမချဲ့အောင် */
 }
 
 .container {
     width: 100%;
-    max-width: 450px; /* ဖုန်း screen အတွက် အကောင်းဆုံး size */
+    max-width: 450px;
     background: var(--white);
     padding: 20px;
     min-height: 100vh;
     text-align: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 1;
 }
 
-/* Countdown Section */
+/* Timer */
 .timer-wrapper {
     background: linear-gradient(135deg, var(--soft-pink), #fbc4ab);
     padding: 15px;
@@ -45,58 +44,28 @@ body {
     font-family: 'Fredoka', sans-serif;
 }
 
-/* Title & Text */
-.main-title {
-    color: var(--primary-pink);
-    font-family: 'Fredoka', sans-serif;
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.sub-text {
-    font-size: 14px;
-    color: #888;
-    line-height: 1.6;
-    margin-bottom: 40px;
-}
-
+/* Titles */
+.main-title { color: var(--primary-pink); font-size: 28px; margin-bottom: 10px; }
+.sub-text { font-size: 14px; color: #888; line-height: 1.6; margin-bottom: 40px; }
 .section-title {
     color: var(--primary-pink);
     font-size: 20px;
-    margin-top: 20px;
     border-bottom: 2px solid var(--soft-pink);
     display: inline-block;
     padding-bottom: 5px;
     margin-bottom: 20px;
 }
 
-/* Photo Grid - ၁၂ ပုံစာ */
+/* Photo Grid */
 .photo-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* ၂ ခုစီ ဘေးချင်းယဉ်စီတာ */
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
-    padding: 10px 0;
 }
+.photo-item { border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+.photo-item img { width: 100%; height: 180px; object-fit: cover; display: block; }
 
-.photo-item {
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    transition: transform 0.3s;
-}
-
-.photo-item:hover {
-    transform: scale(1.03);
-}
-
-.photo-item img {
-    width: 100%;
-    height: 180px; /* ပုံတွေအကုန် အရွယ်အစားတူအောင် */
-    object-fit: cover; /* ပုံမပြားသွားအောင် */
-    display: block;
-}
-
-/* Message Box Section */
+/* Message Box */
 .wish-section {
     margin-top: 50px;
     background: #fffafa;
@@ -104,66 +73,40 @@ body {
     border-radius: 30px;
     border: 2px dashed var(--soft-pink);
 }
-
-.wish-title {
-    color: var(--primary-pink);
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
 .message-box {
     text-align: left;
     background: white;
     padding: 20px;
     border-radius: 20px;
-    color: #666;
-    line-height: 1.8;
     font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+    line-height: 1.8;
 }
 
-/* Button Section */
-.button-wrapper {
-    margin-top: 40px;
-}
-
+/* Button */
 button {
     background: var(--primary-pink);
     color: white;
     border: none;
     padding: 15px 35px;
     border-radius: 50px;
-    font-family: 'Fredoka', sans-serif;
-    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
-    transition: all 0.3s ease;
+    margin-top: 30px;
 }
 
-button:active {
-    transform: scale(0.95);
-}
-/* Floating Hearts Animation */
+/* Floating Hearts Background Effect */
 .heart {
     position: fixed;
     bottom: -10px;
     font-size: 20px;
-    color: #ffb7b2;
+    color: var(--soft-pink);
     user-select: none;
-    z-index: -1; /* စာတွေရဲ့ နောက်မှာပဲ ရှိနေဖို့ */
+    z-index: 0;
     animation: moveUp 4s linear forwards;
-    opacity: 0.8;
+    opacity: 0.6;
 }
-
 @keyframes moveUp {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
