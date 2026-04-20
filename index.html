@@ -86,5 +86,24 @@
             alert("Happy Birthday, My Love! 🎂🎉 May all your dreams come true!");
         }
     </script>
+    <script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️"; // နှလုံးသားပုံစံ
+        heart.style.left = Math.random() * 100 + "vw"; // ဘယ်ညာ နေရာစုံက ထွက်ဖို့
+        heart.style.animationDuration = Math.random() * 2 + 3 + "s"; // အနှေးအမြန် မတူအောင်
+        
+        document.body.appendChild(heart);
+
+        // ၅ စက္ကန့်ပြည့်ရင် ပြန်ဖျောက်မယ် (ဖုန်းမလေးအောင်လို့)
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    // ၅၀၀ မီလီစက္ကန့် (၀.၅ စက္ကန့်) တိုင်းမှာ နှလုံးသားတစ်ခု ထုတ်မယ်
+    setInterval(createHeart, 5000); 
+</script>
 </body>
 </html>
