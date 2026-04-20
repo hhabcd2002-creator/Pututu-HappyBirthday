@@ -1,4 +1,22 @@
-// 1. Countdown Timer
+// 1. Password စစ်ဆေးခြင်း
+function checkPassword() {
+    const pass = document.getElementById("passwordInput").value;
+    const lockScreen = document.getElementById("lockScreen");
+    const mainContent = document.getElementById("mainContent");
+    const errorMsg = document.getElementById("errorMsg");
+
+    // Password သတ်မှတ်ချက်: 2542003
+    if (pass === "2542003") {
+        lockScreen.style.display = "none";
+        mainContent.style.display = "block";
+        // Unlock ပြီးတာနဲ့ စက္ကူဖတ်လေးတွေ ကြွေမယ်
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    } else {
+        errorMsg.style.display = "block";
+    }
+}
+
+// 2. Countdown Timer
 const targetDate = new Date("April 25, 2026 00:00:00").getTime();
 setInterval(() => {
     const now = new Date().getTime();
@@ -9,36 +27,21 @@ setInterval(() => {
     const s = Math.floor((diff % (1000 * 60)) / 1000);
     const timerObj = document.getElementById("timer");
     if (timerObj) {
-        if (diff > 0) {
-            timerObj.innerHTML = `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨`;
-        } else {
-            timerObj.innerHTML = "🎉 Happy Birthday, My Love! 🎉";
-        }
+        timerObj.innerHTML = diff > 0 ? `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨` : "🎉 Happy Birthday! 🎉";
     }
 }, 1000);
 
-// 2. Music Toggle
+// 3. Music Control
 function toggleMusic() {
     const song = document.getElementById("mySong");
     const btn = document.getElementById("playBtn");
-    if (song.paused) {
-        song.play();
-        btn.innerHTML = "သီချင်းပိတ်ရန် 🔇";
-    } else {
-        song.pause();
-        btn.innerHTML = "သီချင်းနားထောင်ရန် 🎵";
-    }
+    if (song.paused) { song.play(); btn.innerHTML = "သီချင်းပိတ်ရန် 🔇"; }
+    else { song.pause(); btn.innerHTML = "သီချင်းနားထောင်ရန် 🎵"; }
 }
 
-// 3. Surprise & Love Letter
+// 4. Surprise Letter
 function celebrate() {
-    confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#2e86c1', '#85c1e9', '#ffffff']
-    });
-    // Show Modal
+    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
     document.getElementById("loveLetterModal").style.display = "block";
 }
 
@@ -46,7 +49,7 @@ function closeModal() {
     document.getElementById("loveLetterModal").style.display = "none";
 }
 
-// 4. Floating Hearts
+// 5. Floating Hearts
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -58,11 +61,3 @@ function createHeart() {
     setTimeout(() => { heart.remove(); }, duration * 1000);
 }
 setInterval(createHeart, 450);
-
-// Modal အပြင်ဘက်ကို နှိပ်ရင် ပိတ်အောင်လုပ်ခြင်း
-window.onclick = function(event) {
-    const modal = document.getElementById("loveLetterModal");
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
