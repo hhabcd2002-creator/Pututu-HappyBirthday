@@ -1,4 +1,4 @@
-// 1. Countdown Timer (April 25)
+// 1. Countdown Timer
 const targetDate = new Date("April 25, 2026 00:00:00").getTime();
 
 setInterval(() => {
@@ -10,10 +10,13 @@ setInterval(() => {
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    if (diff > 0) {
-        document.getElementById("timer").innerHTML = `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨`;
-    } else {
-        document.getElementById("timer").innerHTML = "🎉 Happy Birthday! 🎉";
+    const timerObj = document.getElementById("timer");
+    if (timerObj) {
+        if (diff > 0) {
+            timerObj.innerHTML = `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨`;
+        } else {
+            timerObj.innerHTML = "🎉 Happy Birthday, My Love! 🎉";
+        }
     }
 }, 1000);
 
@@ -27,20 +30,26 @@ function celebrate() {
     alert("Happy Birthday, My Love! 🎂❤️");
 }
 
-// 3. Floating Hearts Generator
+// 3. Floating Hearts Generator (သေချာ ပေါ်လာအောင် ခေါ်ယူခြင်း)
 function createHeart() {
     const heart = document.createElement("div");
-    heart.classList.add("heart");
+    heart.className = "heart"; // class နာမည် ပေးတာ မှန်ဖို့ လိုတယ်
     heart.innerHTML = "❤️";
+    
+    // ပေါ်မယ့် နေရာကို ဘယ်ညာ အနှံ့ ထားမယ်
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+    
+    // အနှေးအမြန် မတူအောင် လုပ်မယ်
+    const duration = Math.random() * 2 + 3;
+    heart.style.animationDuration = duration + "s";
     
     document.body.appendChild(heart);
 
+    // ပျောက်သွားရင် ဖျက်ပစ်မယ်
     setTimeout(() => {
         heart.remove();
-    }, 4000);
+    }, duration * 1000);
 }
 
-// 0.5 စက္ကန့်တိုင်း နှလုံးသားတစ်ခု ထွက်မယ်
-setInterval(createHeart, 500);
+// ၀.၄ စက္ကန့်တိုင်း နှလုံးသားတစ်ခု ထွက်မယ်
+setInterval(createHeart, 400);
