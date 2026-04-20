@@ -53,57 +53,45 @@
         <p style="margin-top: 30px; font-size: 12px; color: #aaa;">Made with ❤️ for You</p>
     </div>
 
-    <script src="script.js"></script>
-
     <script>
-        // Surprise function with Confetti
+        // 1. Countdown Logic
+        const targetDate = new Date("April 25, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if (diff > 0) {
+                document.getElementById("timer").innerHTML = `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨`;
+            } else {
+                document.getElementById("timer").innerHTML = "🎉 Happy Birthday, My Love! 🎉";
+            }
+        }, 1000);
+
+        // 2. Floating Hearts Background
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 600); // နှလုံးသားလေးတွေ ထွက်မယ့်နှုန်း
+
+        // 3. Surprise Confetti
         function celebrate() {
-            // Confetti effect
-            var duration = 3 * 1000;
-            var end = Date.now() + duration;
-
-            (function frame() {
-              confetti({
-                particleCount: 7,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0 },
-                colors: ['#ff69b4', '#ffb7b2', '#aed9e0']
-              });
-              confetti({
-                particleCount: 7,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1 },
-                colors: ['#ff69b4', '#ffb7b2', '#aed9e0']
-              });
-
-              if (Date.now() < end) {
-                requestAnimationFrame(frame);
-              }
-            }());
-
-            alert("Happy Birthday, My Love! 🎂🎉 May all your dreams come true!");
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            alert("Happy Birthday, My Love! 🎂🎉");
         }
     </script>
-    <script>
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤️"; // နှလုံးသားပုံစံ
-        heart.style.left = Math.random() * 100 + "vw"; // ဘယ်ညာ နေရာစုံက ထွက်ဖို့
-        heart.style.animationDuration = Math.random() * 2 + 3 + "s"; // အနှေးအမြန် မတူအောင်
-        
-        document.body.appendChild(heart);
-
-        // ၅ စက္ကန့်ပြည့်ရင် ပြန်ဖျောက်မယ် (ဖုန်းမလေးအောင်လို့)
-        setTimeout(() => {
-            heart.remove();
-        }, 5000);
-    }
-
-    // ၅၀၀ မီလီစက္ကန့် (၀.၅ စက္ကန့်) တိုင်းမှာ နှလုံးသားတစ်ခု ထုတ်မယ်
-    setInterval(createHeart, 5000); 
-</script>
 </body>
 </html>
