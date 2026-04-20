@@ -10,13 +10,21 @@
 </head>
 <body>
 
+    <audio id="mySong" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="container">
         <div class="timer-wrapper">
              <div id="timer">Calculating... ✨</div>
         </div>
 
-        <h1 class="main-title">To My Dearest Love ❤️</h1>
-        <p class="sub-text">On this special day, I want you to know how much you mean to me. Every moment with you is a gift.</p>
+        <div class="music-control">
+            <button id="playBtn" onclick="toggleMusic()">သီချင်းနားထောင်ရန် 🎵</button>
+        </div>
+
+        <h1 class="main-title">To My Dearest Love 💙</h1>
+        <p class="sub-text">Every moment with you is a gift I cherish deeply. You make my world a better place.</p>
 
         <h2 class="section-title">Our Beautiful Memories 📸</h2>
         
@@ -36,15 +44,15 @@
         </div>
 
         <div class="wish-section">
-            <h2 class="wish-title">💗 My Birthday Wish ✨</h2>
+            <h2 class="wish-title">💙 My Birthday Wish ✨</h2>
             <div class="message-box">
                 <p>သဲသဲလေး သို့...</p><br>
-                <p>Happy birthday ပါမေရေ... မောင့်အချစ်ကို ဒီ Website လေးကတစ်ဆင့် သိစေချင်ပါတယ်။ မွေးနေ့မှာ အရမ်းပျော်ရွှင်ပါစေ။ အမြဲတမ်းလည်း မောင့်အနားမှာ ရှိနေပေးပါနော်။</p>
+                <p>Happy birthday ပါမေရေ... မောင့်အချစ်ကို ဒီ Website လေးကတစ်ဆင့် သိစေချင်ပါတယ်။ မွေးနေ့မှာ အရမ်းပျော်ရွှင်ပါစေ။ အမြဲတမ်းလည်း မောင့်အနားမှာ ရှိနေပေးပါနော်။ မောင် မင်းကို အရမ်းချစ်တယ်!</p>
             </div>
         </div>
 
         <button id="surpriseBtn" onclick="celebrate()">Click for Surprise 🎁</button>
-        <p style="margin-top: 30px; font-size: 10px; color: #ccc;">Made with ❤️</p>
+        <p style="margin-top: 30px; font-size: 10px; color: #9bb1ff;">Made with 💙 for You</p>
     </div>
 
     <script src="script.js"></script>
