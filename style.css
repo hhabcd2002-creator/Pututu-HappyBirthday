@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    text-align: center;
+    background-color: #fdf5e6; /* Cream */
+    font-family: 'Fredoka', sans-serif;
+    color: #5d4037;
+}
+
+.hero {
+    background: linear-gradient(to bottom, #aed9e0, #fdf5e6); /* Sky blue to Cream */
+    padding: 50px 20px;
+}
+
+h1 { font-family: 'Fredoka', sans-serif; font-size: 2.5rem; color: #ffb7b2; }
+
+#timer { font-size: 1.2rem; margin: 20px; font-weight: bold; }
+
+.main-img { width: 80%; max-width: 300px; border-radius: 20px; }
+
+.wish { font-family: 'Gochi Hand', cursive; font-size: 1.5rem; padding: 20px; }
+
+button {
+    background: #b2e2f2; border: none; padding: 15px 30px;
+    border-radius: 50px; font-size: 1rem; cursor: pointer;
+}
+
+.hidden { display: none; }
+#message { font-size: 2rem; margin-top: 20px; color: #ffb7b2; }
