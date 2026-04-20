@@ -1,42 +1,46 @@
-// ၁။ မွေးနေ့ Countdown ရက်စွဲသတ်မှတ်ခြင်း (April 25)
+// 1. Countdown Timer (April 25)
 const targetDate = new Date("April 25, 2026 00:00:00").getTime();
 
-const countdown = setInterval(() => {
+setInterval(() => {
     const now = new Date().getTime();
     const diff = targetDate - now;
 
-    // ရက်၊ နာရီ၊ မိနစ်၊ စက္ကန့် တွက်ချက်ခြင်း
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    // HTML ထဲက id="timer" နေရာမှာ စာသားသွားပြခြင်း
-    const timerElement = document.getElementById("timer");
-    
-    if (timerElement) {
-        if (diff > 0) {
-            timerElement.innerHTML = `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨`;
-        } else {
-            // မွေးနေ့ရောက်သွားရင် ပြမယ့်စာသား
-            timerElement.innerHTML = "🎉 Happy Birthday, My Love! 🎉";
-            clearInterval(countdown); // Countdown ကို ရပ်လိုက်တာ
-        }
+    if (diff > 0) {
+        document.getElementById("timer").innerHTML = `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨`;
+    } else {
+        document.getElementById("timer").innerHTML = "🎉 Happy Birthday! 🎉";
     }
 }, 1000);
 
-// ၂။ Surprise Button လုပ်ဆောင်ချက် (Confetti နဲ့ Alert)
+// 2. Surprise Confetti
 function celebrate() {
-    // index.html ထဲမှာ Confetti Script ချိတ်ထားရင် ဒါက အလုပ်လုပ်ပါလိမ့်မယ်
-    if (typeof confetti === 'function') {
-        confetti({
-            particleCount: 150,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#ff69b4', '#ffb7b2', '#ffffff']
-        });
-    }
-    
-    // မွေးနေ့ရှင်ဆီ ပို့ချင်တဲ့ Message လေး
-    alert("Happy Birthday to the most special person in my life! ❤️🎂");
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+    alert("Happy Birthday, My Love! 🎂❤️");
 }
+
+// 3. Floating Hearts Generator
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+    
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 4000);
+}
+
+// 0.5 စက္ကန့်တိုင်း နှလုံးသားတစ်ခု ထွက်မယ်
+setInterval(createHeart, 500);
