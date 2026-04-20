@@ -24,7 +24,7 @@ body {
     min-height: 100vh;
     text-align: center;
     position: relative;
-    z-index: 2; /* စာတွေကို အရှေ့တင်ထားတာ */
+    z-index: 5; /* စာတွေကို အလယ်အလွှာမှာ ထားတယ် */
 }
 
 .timer-wrapper {
@@ -35,8 +35,6 @@ body {
     color: white;
     font-weight: 600;
 }
-
-.main-title { color: var(--primary-pink); font-family: 'Fredoka', sans-serif; }
 
 .photo-grid {
     display: grid;
@@ -52,45 +50,25 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.wish-section {
-    margin-top: 30px;
-    background: #fff5f5;
-    padding: 20px;
-    border-radius: 20px;
-    border: 2px dashed var(--soft-pink);
-}
-
-.message-box {
-    text-align: left;
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    font-size: 14px;
-}
-
-button {
-    background: var(--primary-pink);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-/* --- Floating Hearts CSS --- */
+/* --- Floating Hearts CSS (အရှေ့ဆုံးမှာ ပေါ်ဖို့ ပြင်ထားတာ) --- */
 .heart {
     position: fixed;
-    bottom: -20px;
-    font-size: 20px;
-    color: #ff69b4;
-    z-index: 1; /* နောက်ခံမှာ ထားတာ */
+    bottom: -50px;
+    font-size: 24px; /* အရွယ်အစား နည်းနည်း ပိုကြီးလိုက်တယ် */
+    color: #ff1493; /* ပိုတောက်တဲ့ ပန်းရောင် */
+    z-index: 9999; /* အရှေ့ဆုံး အလွှာ */
     user-select: none;
     pointer-events: none;
     animation: moveUp 4s linear forwards;
 }
 
 @keyframes moveUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
