@@ -1,7 +1,23 @@
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400&family=Gochi+Hand&display=swap');
+
+:root {
+    --primary-pink: #ff69b4;
+    --soft-pink: #ffb7b2;
+    --bg-color: #ffe4e1;
+    --text-color: #5d4037;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #ffe4e1; /* နုအေးတဲ့ ပန်းရောင် */
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
@@ -9,71 +25,123 @@ body {
 
 .container {
     width: 100%;
-    max-width: 400px; /* ဖုန်း size အံကိုက်ဖြစ်အောင် */
-    background: white;
+    max-width: 450px; /* ဖုန်း screen အတွက် အကောင်းဆုံး size */
+    background: var(--white);
     padding: 20px;
     min-height: 100vh;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
 
+/* Countdown Section */
+.timer-wrapper {
+    background: linear-gradient(135deg, var(--soft-pink), #fbc4ab);
+    padding: 15px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(255, 183, 178, 0.4);
+    font-family: 'Fredoka', sans-serif;
+}
+
+/* Title & Text */
 .main-title {
-    color: #ff69b4;
+    color: var(--primary-pink);
     font-family: 'Fredoka', sans-serif;
     font-size: 28px;
-    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 .sub-text {
-    color: #666;
     font-size: 14px;
+    color: #888;
     line-height: 1.6;
-    padding: 0 10px;
+    margin-bottom: 40px;
 }
 
 .section-title {
-    color: #ff69b4;
+    color: var(--primary-pink);
     font-size: 20px;
-    margin-top: 40px;
-    border-bottom: 2px solid #ffb7b2;
+    margin-top: 20px;
+    border-bottom: 2px solid var(--soft-pink);
     display: inline-block;
     padding-bottom: 5px;
+    margin-bottom: 20px;
 }
 
-/* ပုံတွေကို ၂ ခုစီ စီတဲ့အပိုင်း */
+/* Photo Grid - ၁၂ ပုံစာ */
 .photo-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* ၂ ခုစီ ခွဲတာ */
-    gap: 15px; /* ပုံတွေကြား အကွာအဝေး */
-    margin-top: 20px;
+    grid-template-columns: 1fr 1fr; /* ၂ ခုစီ ဘေးချင်းယဉ်စီတာ */
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.photo-item {
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.photo-item:hover {
+    transform: scale(1.03);
 }
 
 .photo-item img {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 20px; /* ပုံလေးတွေ ဝိုင်းသွားအောင် */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    height: 180px; /* ပုံတွေအကုန် အရွယ်အစားတူအောင် */
+    object-fit: cover; /* ပုံမပြားသွားအောင် */
+    display: block;
 }
 
-/* စာရေးတဲ့ Box အပိုင်း */
+/* Message Box Section */
 .wish-section {
     margin-top: 50px;
-    background: #fff0f5;
-    padding: 20px;
-    border-radius: 25px;
-    border: 2px solid #ffb7b2;
+    background: #fffafa;
+    padding: 25px;
+    border-radius: 30px;
+    border: 2px dashed var(--soft-pink);
 }
 
 .wish-title {
-    color: #ff69b4;
+    color: var(--primary-pink);
     font-size: 18px;
+    margin-bottom: 15px;
 }
 
 .message-box {
     text-align: left;
     background: white;
     padding: 20px;
-    border-radius: 15px;
-    color: #555;
+    border-radius: 20px;
+    color: #666;
     line-height: 1.8;
-    font-size: 15px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+}
+
+/* Button Section */
+.button-wrapper {
+    margin-top: 40px;
+}
+
+button {
+    background: var(--primary-pink);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+}
+
+button:active {
+    transform: scale(0.95);
 }
