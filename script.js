@@ -1,4 +1,4 @@
-// 1. Countdown Timer
+// 1. Countdown Timer (April 25)
 const targetDate = new Date("April 25, 2026 00:00:00").getTime();
 
 setInterval(() => {
@@ -15,41 +15,47 @@ setInterval(() => {
         if (diff > 0) {
             timerObj.innerHTML = `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨`;
         } else {
-            timerObj.innerHTML = "🎉 Happy Birthday, My Love! 🎉";
+            timerObj.innerHTML = "🎉 Happy Birthday, My Dearest! 🎉";
         }
     }
 }, 1000);
 
-// 2. Surprise Confetti
+// 2. သီချင်း Toggle လုပ်ဆောင်ချက်
+function toggleMusic() {
+    const song = document.getElementById("mySong");
+    const btn = document.getElementById("playBtn");
+    
+    if (song.paused) {
+        song.play();
+        btn.innerHTML = "သီချင်းပိတ်ရန် 🔇";
+        btn.style.background = "#fadbd8"; // ပိတ်ချင်ရင် အရောင်ပြောင်းပြမယ်
+    } else {
+        song.pause();
+        btn.innerHTML = "သီချင်းနားထောင်ရန် 🎵";
+        btn.style.background = "#d6eaf8";
+    }
+}
+
+// 3. Surprise Button (Confetti)
 function celebrate() {
     confetti({
         particleCount: 150,
         spread: 70,
-        origin: { y: 0.6 }
+        origin: { y: 0.6 },
+        colors: ['#2e86c1', '#85c1e9', '#ffffff'] // အပြာရောင် Confetti လေးတွေ
     });
-    alert("Happy Birthday, My Love! 🎂❤️");
+    alert("Happy Birthday, My Love! 🎂💙 Stay happy always.");
 }
 
-// 3. Floating Hearts Generator (သေချာ ပေါ်လာအောင် ခေါ်ယူခြင်း)
+// 4. Floating Hearts Generator (အပြာရောင်နှလုံးသားလေးတွေ)
 function createHeart() {
     const heart = document.createElement("div");
-    heart.className = "heart"; // class နာမည် ပေးတာ မှန်ဖို့ လိုတယ်
-    heart.innerHTML = "❤️";
-    
-    // ပေါ်မယ့် နေရာကို ဘယ်ညာ အနှံ့ ထားမယ်
+    heart.className = "heart";
+    heart.innerHTML = "💙"; // အပြာရောင်နှလုံးသား
     heart.style.left = Math.random() * 100 + "vw";
-    
-    // အနှေးအမြန် မတူအောင် လုပ်မယ်
     const duration = Math.random() * 2 + 3;
     heart.style.animationDuration = duration + "s";
-    
     document.body.appendChild(heart);
-
-    // ပျောက်သွားရင် ဖျက်ပစ်မယ်
-    setTimeout(() => {
-        heart.remove();
-    }, duration * 1000);
+    setTimeout(() => { heart.remove(); }, duration * 1000);
 }
-
-// ၀.၄ စက္ကန့်တိုင်း နှလုံးသားတစ်ခု ထွက်မယ်
-setInterval(createHeart, 400);
+setInterval(createHeart, 450);
