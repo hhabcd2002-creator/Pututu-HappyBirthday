@@ -1,112 +1,96 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400&family=Gochi+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400&display=swap');
 
 :root {
     --primary-pink: #ff69b4;
     --soft-pink: #ffb7b2;
     --bg-color: #ffe4e1;
-    --text-color: #5d4037;
-    --white: #ffffff;
 }
-
-* { box-sizing: border-box; }
 
 body {
     margin: 0;
     padding: 0;
     background-color: var(--bg-color);
-    color: var(--text-color);
     font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
-    overflow-x: hidden; /* ဘေးမချဲ့အောင် */
+    overflow-x: hidden;
 }
 
 .container {
     width: 100%;
     max-width: 450px;
-    background: var(--white);
+    background: white;
     padding: 20px;
     min-height: 100vh;
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: 2; /* စာတွေကို အရှေ့တင်ထားတာ */
 }
 
-/* Timer */
 .timer-wrapper {
     background: linear-gradient(135deg, var(--soft-pink), #fbc4ab);
-    padding: 15px;
+    padding: 12px;
     border-radius: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: white;
     font-weight: 600;
-    box-shadow: 0 4px 10px rgba(255, 183, 178, 0.4);
-    font-family: 'Fredoka', sans-serif;
 }
 
-/* Titles */
-.main-title { color: var(--primary-pink); font-size: 28px; margin-bottom: 10px; }
-.sub-text { font-size: 14px; color: #888; line-height: 1.6; margin-bottom: 40px; }
-.section-title {
-    color: var(--primary-pink);
-    font-size: 20px;
-    border-bottom: 2px solid var(--soft-pink);
-    display: inline-block;
-    padding-bottom: 5px;
-    margin-bottom: 20px;
-}
+.main-title { color: var(--primary-pink); font-family: 'Fredoka', sans-serif; }
 
-/* Photo Grid */
 .photo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
 }
-.photo-item { border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
-.photo-item img { width: 100%; height: 180px; object-fit: cover; display: block; }
 
-/* Message Box */
+.photo-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 .wish-section {
-    margin-top: 50px;
-    background: #fffafa;
-    padding: 25px;
-    border-radius: 30px;
+    margin-top: 30px;
+    background: #fff5f5;
+    padding: 20px;
+    border-radius: 20px;
     border: 2px dashed var(--soft-pink);
 }
+
 .message-box {
     text-align: left;
     background: white;
-    padding: 20px;
-    border-radius: 20px;
+    padding: 15px;
+    border-radius: 15px;
     font-size: 14px;
-    line-height: 1.8;
 }
 
-/* Button */
 button {
     background: var(--primary-pink);
     color: white;
     border: none;
-    padding: 15px 35px;
+    padding: 12px 30px;
     border-radius: 50px;
-    font-weight: 600;
+    margin-top: 20px;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
-    margin-top: 30px;
 }
 
-/* Floating Hearts Background Effect */
+/* --- Floating Hearts CSS --- */
 .heart {
     position: fixed;
-    bottom: -10px;
+    bottom: -20px;
     font-size: 20px;
-    color: var(--soft-pink);
+    color: #ff69b4;
+    z-index: 1; /* နောက်ခံမှာ ထားတာ */
     user-select: none;
-    z-index: 0;
+    pointer-events: none;
     animation: moveUp 4s linear forwards;
-    opacity: 0.6;
 }
+
 @keyframes moveUp {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
 }
