@@ -96,14 +96,40 @@ function toggleMusic() {
     else { song.pause(); btn.innerHTML = "သီချင်းနားထောင်ရန် 🎵"; }
 }
 
-// 6. Drive Upload (Placeholder)
-function uploadFile(input) {
+// 6. Real Google Drive Upload Logic
+async function uploadFile(input) {
+    const file = input.files[0];
+    if (!file) return;
+
     const status = document.getElementById("uploadStatus");
     status.innerText = "သိမ်းဆည်းနေပါသည်... ⏳";
-    setTimeout(() => {
-        status.innerText = "Drive ထဲသို့ အမှတ်တရ သိမ်းဆည်းပြီးပါပြီ! ✅";
-        confetti({ particleCount: 50 });
-    }, 2000);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async function () {
+        const base64 = reader.result.split(",")[1];
+        const data = {
+            base64: base64,
+            type: file.type,
+            name: file.name
+        };
+
+        try {
+            // ကိုကိုပေးတဲ့ Web App URL ကို သုံးထားပါတယ်
+            const response = await fetch("https://script.google.com/macros/s/AKfycbzw4fTV5xixNWZRk0tJYuGpdIT6RjYVF4UvXG5EeGsyHOMRKFryPw2m3Smhc8PC3Duxlg/exec", {
+                method: "POST",
+                mode: "no-cors", // Google Apps Script အတွက် no-cors သုံးရတတ်ပါတယ်
+                body: JSON.stringify(data)
+            });
+
+            // no-cors ဖြစ်လို့ response status ကို စစ်လို့မရပေမယ့် ပုံမှန်ဆိုရင် ရောက်သွားပါပြီ
+            status.innerText = "Drive ထဲသို့ အမှတ်တရ သိမ်းဆည်းပြီးပါပြီ! ✅";
+            confetti({ particleCount: 50 });
+        } catch (error) {
+            status.innerText = "Error တက်သွားပါတယ်။ နောက်တစ်ခေါက် ပြန်စမ်းကြည့်ပါဦး။";
+            console.error(error);
+        }
+    };
 }
 
 // Helpers
