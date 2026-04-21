@@ -1,37 +1,79 @@
-// 1. Password စစ်ဆေးခြင်း
+// 1. Password Check (2542003)
 function checkPassword() {
     const pass = document.getElementById("passwordInput").value;
     const lockScreen = document.getElementById("lockScreen");
     const mainContent = document.getElementById("mainContent");
     const errorMsg = document.getElementById("errorMsg");
+    const song = document.getElementById("mySong");
 
-    // Password သတ်မှတ်ချက်: 2542003
     if (pass === "2542003") {
         lockScreen.style.display = "none";
         mainContent.style.display = "block";
-        // Unlock ပြီးတာနဲ့ စက္ကူဖတ်လေးတွေ ကြွေမယ်
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        
+        // Auto-play song (Optional)
+        song.play().catch(e => console.log("Click play button to start music"));
     } else {
         errorMsg.style.display = "block";
     }
 }
 
-// 2. Countdown Timer
+// Enter key support
+document.getElementById("passwordInput").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") checkPassword();
+});
+
+// 2. Timers
+const startDate = new Date("2025-07-14T00:00:00");
 const targetDate = new Date("April 25, 2026 00:00:00").getTime();
+
 setInterval(() => {
-    const now = new Date().getTime();
-    const diff = targetDate - now;
+    const now = new Date();
+    
+    // Day Counter
+    const diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+    document.getElementById("anniversary-counter").innerHTML = `Together for: ${diffDays} Days 💙`;
+
+    // Birthday Countdown
+    const diff = targetDate - now.getTime();
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
+    
     const timerObj = document.getElementById("timer");
     if (timerObj) {
         timerObj.innerHTML = diff > 0 ? `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨` : "🎉 Happy Birthday! 🎉";
     }
 }, 1000);
 
-// 3. Music Control
+// 3. Stitch Slider Movement
+const slider = document.getElementById('photoSlider');
+const stitch = document.querySelector('.surfing-stitch');
+
+if (slider && stitch) {
+    slider.addEventListener('scroll', () => {
+        const scrollWidth = slider.scrollWidth - slider.clientWidth;
+        const scrollPercentage = (slider.scrollLeft / scrollWidth) * 85; 
+        stitch.style.left = scrollPercentage + '%';
+    });
+}
+
+// 4. Floating Hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💙";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    const duration = Math.random() * 2 + 3;
+    heart.style.animationDuration = duration + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), duration * 1000);
+}
+setInterval(createHeart, 500);
+
+// 5. Utility Functions
 function toggleMusic() {
     const song = document.getElementById("mySong");
     const btn = document.getElementById("playBtn");
@@ -39,25 +81,11 @@ function toggleMusic() {
     else { song.pause(); btn.innerHTML = "သီချင်းနားထောင်ရန် 🎵"; }
 }
 
-// 4. Surprise Letter
 function celebrate() {
-    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+    confetti({ particleCount: 200, spread: 80, origin: { y: 0.6 } });
     document.getElementById("loveLetterModal").style.display = "block";
 }
 
 function closeModal() {
     document.getElementById("loveLetterModal").style.display = "none";
 }
-
-// 5. Floating Hearts
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💙";
-    heart.style.left = Math.random() * 100 + "vw";
-    const duration = Math.random() * 2 + 3;
-    heart.style.animationDuration = duration + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => { heart.remove(); }, duration * 1000);
-}
-setInterval(createHeart, 450);
