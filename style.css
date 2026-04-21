@@ -23,13 +23,13 @@ body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: va
 .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
 .photo-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
-/* Motivation Quote */
-.quote-style { font-family: 'Gochi Hand', cursive; color: var(--dark-blue); font-size: 1.2rem; margin: 30px 0 15px 0; padding: 15px; background: var(--soft-blue); border-radius: 15px; line-height: 1.4; }
+/* Motivation Quote Fix */
+.quote-style { font-family: 'Gochi Hand', cursive; color: var(--dark-blue); font-size: 1.2rem; margin: 30px 0 15px 0; padding: 15px; background: var(--soft-blue); border-radius: 15px; line-height: 1.4; display: none; }
 
-/* Scratch Card */
-#scratch-container { position: relative; width: 200px; height: 100px; margin: 15px auto; }
-#scratchCanvas { position: absolute; top: 0; left: 0; z-index: 2; cursor: crosshair; }
-#coupon-result { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #fff; border: 2px dashed var(--primary-blue); border-radius: 10px; font-weight: bold; color: var(--dark-blue); }
+/* Scratch Card Fix */
+#scratch-container { position: relative; width: 200px; height: 100px; margin: 15px auto; overflow: hidden; border-radius: 10px; }
+#scratchCanvas { position: absolute; top: 0; left: 0; z-index: 2; cursor: crosshair; touch-action: none; }
+#coupon-result { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #fff; border: 2px dashed var(--primary-blue); border-radius: 10px; font-weight: bold; color: var(--dark-blue); font-size: 14px; }
 
 /* Buttons */
 .upload-btn { background: #3498db; color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-size: 13px; font-weight: 600; }
@@ -41,6 +41,6 @@ body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: va
 @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .close-btn { position: absolute; right: 15px; top: 10px; font-size: 25px; cursor: pointer; color: var(--dark-blue); }
 
-/* Hearts */
+/* Hearts Rain */
 .heart { position: fixed; bottom: -50px; font-size: 20px; z-index: 9999; animation: moveUp 4s linear forwards; pointer-events: none; }
 @keyframes moveUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
