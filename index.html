@@ -21,13 +21,13 @@
             <input type="password" id="passwordInput" placeholder="Enter password">
             <button class="unlock-btn" onclick="checkPassword()">💙 Unlock Surprise</button>
             <p class="hint-text">💡 Hint: ပုတုတုမွေးနေ့ (DDMMYYYY)</p>
-            <p id="errorMsg">Password မှားနေပါတယ်နော်! ❌</p>
+            <p id="errorMsg" style="color: red; display: none; font-size: 12px; margin-top: 10px;">Password မှားနေပါတယ်နော်! ❌</p>
         </div>
     </div>
 
     <div id="mainContent" class="container" style="display:none;">
         <div class="timer-wrapper">
-             <div id="anniversary-counter" style="font-size: 1.2rem; margin-bottom: 5px;">Together for: 0 Days 💙</div>
+             <div id="anniversary-counter" style="font-size: 1.2rem; margin-bottom: 5px;">Together for: Calculating... 💙</div>
              <div id="timer">Calculating... ✨</div>
         </div>
 
@@ -37,8 +37,6 @@
 
         <h1 class="main-title">💙 To My Pu Tu Tu Lay 💙</h1>
         <p class="sub-text">"Happy birthday to the person who makes every day feel like a celebration. I’m so lucky to have you by my side!"</p>
-
-        <div id="motivation-box" class="quote-style"></div>
 
         <h2 class="section-title">Pu Tu Tu Photos 📸</h2>
         <div class="photo-grid">
@@ -56,7 +54,7 @@
             <div class="photo-item"><img src="12.jpg" alt="12"></div>
         </div>
 
-        <div class="scratch-section">
+        <div class="scratch-section" style="margin-top: 30px;">
             <h3>Try Your Luck! 💋</h3>
             <button id="scratchBtn" onclick="showScratchCard()">Get Your Kiss Coupon 🎁</button>
             <div id="scratch-container" style="display:none;">
@@ -65,22 +63,23 @@
             </div>
         </div>
 
-        <div class="upload-section" style="margin-top: 30px;">
+        <div id="motivation-box" class="quote-style"></div>
+
+        <button id="surpriseBtn" onclick="celebrate()">Click for Surprise 🎁</button>
+
+        <div class="upload-section" style="margin-top: 40px; padding-bottom: 20px;">
             <button class="upload-btn" onclick="document.getElementById('fileInput').click()">📸 အမှတ်တရသိမ်းရန်</button>
             <input type="file" id="fileInput" style="display:none" onchange="uploadFile(this)">
             <p id="uploadStatus" style="font-size: 10px; margin-top: 5px; color: var(--dark-blue);"></p>
+            <p style="margin-top: 20px; font-size: 10px; color: #9bb1ff;">Made with 💙 for You</p>
         </div>
-
-        <button id="surpriseBtn" onclick="celebrate()">Click for Surprise 🎁</button>
-        <p style="margin-top: 30px; font-size: 10px; color: #9bb1ff;">Made with 💙 for You</p>
     </div>
-
-    <div id="secretHeart" onclick="showSecretMessage()">💛</div>
 
     <div id="loveLetterModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div id="modal-body" class="letter-body"></div>
+            <div id="modal-body" class="letter-body">
+                </div>
         </div>
     </div>
 
