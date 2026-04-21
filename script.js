@@ -5,7 +5,10 @@ function checkPassword() {
         document.getElementById("lockScreen").style.display = "none";
         document.getElementById("mainContent").style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        // ၀င်လိုက်တာနဲ့ သီချင်းမတန်းပွင့်အောင် (ခလုပ်နှိပ်မှပွင့်အောင်) ဒီမှာ မဖွင့်ထားတော့ပါ
+        
+        // Show Motivation Box & Random Quote
+        const quoteBox = document.getElementById("motivation-box");
+        quoteBox.style.display = "block";
         showRandomQuote();
     } else {
         document.getElementById("errorMsg").style.display = "block";
@@ -18,11 +21,9 @@ const bdayDate = new Date("April 25, 2026 00:00:00").getTime();
 
 setInterval(() => {
     const now = new Date();
-    // Anniversary Day Counter
     const diffAnniv = Math.floor((now - annivDate) / (1000 * 60 * 60 * 24));
     document.getElementById("anniversary-counter").innerHTML = `Together for: ${diffAnniv} Days 💙`;
 
-    // Birthday Countdown
     const diffBday = bdayDate - now.getTime();
     const d = Math.floor(diffBday / (1000 * 60 * 60 * 24));
     const h = Math.floor((diffBday % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -47,49 +48,52 @@ function showRandomQuote() {
     document.getElementById("motivation-box").innerText = quotes[Math.floor(Math.random() * quotes.length)];
 }
 
-// 4. Scratch Card Logic
+// 4. Scratch Card Fix (Mobile & PC Friendly)
 const coupons = ["Forehead Kiss 💋", "Neck Kiss 💋", "Lip Kiss 💋", "Hand Kiss 💋", "Cheek Kiss 💋", "Ear Kiss 💋"];
+
 function showScratchCard() {
     document.getElementById("scratch-container").style.display = "block";
     document.getElementById("coupon-result").innerText = coupons[Math.floor(Math.random() * coupons.length)];
+    
     const canvas = document.getElementById("scratchCanvas");
     const ctx = canvas.getContext("2d");
-    
-    // Create Silver Cover
     ctx.fillStyle = "#C0C0C0";
     ctx.fillRect(0, 0, 200, 100);
     
     let isDrawing = false;
-    const scratch = (e) => {
+
+    function scratch(e) {
         if (!isDrawing) return;
         const rect = canvas.getBoundingClientRect();
-        const x = (e.clientX || e.touches[0].clientX) - rect.left;
-        const y = (e.clientY || e.touches[0].clientY) - rect.top;
+        let x, y;
+        if (e.touches) {
+            x = e.touches[0].clientX - rect.left;
+            y = e.touches[0].clientY - rect.top;
+        } else {
+            x = e.clientX - rect.left;
+            y = e.clientY - rect.top;
+        }
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
         ctx.arc(x, y, 15, 0, Math.PI * 2);
         ctx.fill();
-    };
+    }
 
-    canvas.addEventListener("mousedown", () => isDrawing = true);
-    canvas.addEventListener("touchstart", () => isDrawing = true);
-    canvas.addEventListener("mousemove", scratch);
-    canvas.addEventListener("touchmove", scratch);
-    canvas.addEventListener("mouseup", () => isDrawing = false);
+    canvas.addEventListener("touchstart", (e) => { isDrawing = true; scratch(e); e.preventDefault(); }, {passive: false});
+    canvas.addEventListener("touchmove", (e) => { scratch(e); e.preventDefault(); }, {passive: false});
     canvas.addEventListener("touchend", () => isDrawing = false);
+
+    canvas.addEventListener("mousedown", (e) => { isDrawing = true; scratch(e); });
+    canvas.addEventListener("mousemove", (e) => scratch(e));
+    window.addEventListener("mouseup", () => isDrawing = false);
 }
 
 // 5. Music Control
 function toggleMusic() {
     const song = document.getElementById("mySong");
     const btn = document.getElementById("playBtn");
-    if (song.paused) {
-        song.play();
-        btn.innerHTML = "သီချင်းပိတ်ရန် 🔇";
-    } else {
-        song.pause();
-        btn.innerHTML = "သီချင်းနားထောင်ရန် 🎵";
-    }
+    if (song.paused) { song.play(); btn.innerHTML = "သီချင်းပိတ်ရန် 🔇"; }
+    else { song.pause(); btn.innerHTML = "သီချင်းနားထောင်ရန် 🎵"; }
 }
 
 // 6. Drive Upload (Placeholder)
@@ -113,13 +117,12 @@ function celebrate() {
 }
 function closeModal() { document.getElementById("loveLetterModal").style.display = "none"; }
 
-// Heart Rain
+// Heart Rain Effect
 setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "💙";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 15 + 10 + "px";
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 4000);
 }, 500);
