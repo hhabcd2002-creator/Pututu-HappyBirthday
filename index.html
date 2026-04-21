@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💙To My Pu Tu Tu Lay 💙</title>
+    <title>💙 To My Pu Tu Tu Lay 💙</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400&family=Gochi+Hand&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -16,22 +16,18 @@
 
     <div id="lockScreen">
         <div class="lock-box">
-            <h1 class="lock-title"> Happy Birthday <br> Pu Tu Tu ❤️</h1>
+            <h1 class="lock-title">Happy Birthday <br> Pu Tu Tu ❤️</h1>
             <p class="lock-subtitle">To see your special birthday surprise, please enter the password...</p>
-            
             <input type="password" id="passwordInput" placeholder="Enter password">
-            
-            <button class="unlock-btn" onclick="checkPassword()">
-                💙 Unlock Surprise
-            </button>
-
+            <button class="unlock-btn" onclick="checkPassword()">💙 Unlock Surprise</button>
             <p class="hint-text">💡 Hint: ပုတုတုမွေးနေ့ (DDMMYYYY)</p>
-            <p id="errorMsg" style="color: red; display: none; font-size: 12px; margin-top: 10px;">Password မှားနေပါတယ်နော်! ❌</p>
+            <p id="errorMsg">Password မှားနေပါတယ်နော်! ❌</p>
         </div>
     </div>
 
     <div id="mainContent" class="container" style="display:none;">
         <div class="timer-wrapper">
+             <div id="anniversary-counter">Together for: Calculating... 💙</div>
              <div id="timer">Calculating... ✨</div>
         </div>
 
@@ -39,24 +35,28 @@
             <button id="playBtn" onclick="toggleMusic()">သီချင်းနားထောင်ရန် 🎵</button>
         </div>
 
-        <h1 class="main-title">💙To My Pu Tu Tu Lay 💙</h1>
+        <h1 class="main-title">💙 To My Pu Tu Tu Lay 💙</h1>
         <p class="sub-text">"Happy birthday to the person who makes every day feel like a celebration. I’m so lucky to have you by my side, and I can’t wait to make more memories with you this year. I love you!"</p>
 
-        <h2 class="section-title">Pu Tu Tu Photos 📸</h2>
-        
-        <div class="photo-grid">
-            <div class="photo-item"><img src="1.jpg" alt="1"></div>
-            <div class="photo-item"><img src="2.jpg" alt="2"></div>
-            <div class="photo-item"><img src="3.jpg" alt="3"></div>
-            <div class="photo-item"><img src="4.jpg" alt="4"></div>
-            <div class="photo-item"><img src="5.jpg" alt="5"></div>
-            <div class="photo-item"><img src="6.jpg" alt="6"></div>
-            <div class="photo-item"><img src="7.jpg" alt="7"></div>
-            <div class="photo-item"><img src="8.jpg" alt="8"></div>
-            <div class="photo-item"><img src="9.jpg" alt="9"></div>
-            <div class="photo-item"><img src="10.jpg" alt="10"></div>
-            <div class="photo-item"><img src="11.jpg" alt="11"></div>
-            <div class="photo-item"><img src="12.jpg" alt="12"></div>
+        <h2 class="section-title">Stitch's Adventure 🌊</h2>
+        <div class="slider-outer-container">
+            <div class="slider-container" id="photoSlider">
+                <div class="slide"><img src="1.jpg" alt="1"></div>
+                <div class="slide"><img src="2.jpg" alt="2"></div>
+                <div class="slide"><img src="3.jpg" alt="3"></div>
+                <div class="slide"><img src="4.jpg" alt="4"></div>
+                <div class="slide"><img src="5.jpg" alt="5"></div>
+                <div class="slide"><img src="6.jpg" alt="6"></div>
+                <div class="slide"><img src="7.jpg" alt="7"></div>
+                <div class="slide"><img src="8.jpg" alt="8"></div>
+                <div class="slide"><img src="9.jpg" alt="9"></div>
+                <div class="slide"><img src="10.jpg" alt="10"></div>
+                <div class="slide"><img src="11.jpg" alt="11"></div>
+                <div class="slide"><img src="12.jpg" alt="12"></div>
+            </div>
+            <div class="surfing-stitch">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueXp6bmZ4bmZ4bmZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZ25hbCZjdD1z/11vDNL1PrUUo0/giphy.gif" alt="Surfing Stitch">
+            </div>
         </div>
 
         <button id="surpriseBtn" onclick="celebrate()">Click for Surprise 🎁</button>
