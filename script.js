@@ -1,100 +1,125 @@
-// 1. Password & Lock
+// 1. Password Verification
 function checkPassword() {
     const pass = document.getElementById("passwordInput").value;
     if (pass === "2542003") {
         document.getElementById("lockScreen").style.display = "none";
         document.getElementById("mainContent").style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        document.getElementById("mySong").play().catch(() => {});
-        initSecretHeart();
+        // ၀င်လိုက်တာနဲ့ သီချင်းမတန်းပွင့်အောင် (ခလုပ်နှိပ်မှပွင့်အောင်) ဒီမှာ မဖွင့်ထားတော့ပါ
         showRandomQuote();
     } else {
         document.getElementById("errorMsg").style.display = "block";
     }
 }
 
-// 2. Together Day & Birthday Timer
+// 2. Anniversary & Birthday Timer
 const annivDate = new Date("2025-07-14T00:00:00");
 const bdayDate = new Date("April 25, 2026 00:00:00").getTime();
 
 setInterval(() => {
     const now = new Date();
-    const diffDays = Math.floor((now - annivDate) / (1000 * 60 * 60 * 24));
-    document.getElementById("anniversary-counter").innerHTML = `Together for: ${diffDays} Days 💙`;
+    // Anniversary Day Counter
+    const diffAnniv = Math.floor((now - annivDate) / (1000 * 60 * 60 * 24));
+    document.getElementById("anniversary-counter").innerHTML = `Together for: ${diffAnniv} Days 💙`;
 
-    const diff = bdayDate - now.getTime();
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((diff % (1000 * 60)) / 1000);
-    document.getElementById("timer").innerHTML = diff > 0 ? `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨` : "🎉 Happy Birthday! 🎉";
+    // Birthday Countdown
+    const diffBday = bdayDate - now.getTime();
+    const d = Math.floor(diffBday / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diffBday % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diffBday % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diffBday % (1000 * 60)) / 1000);
+    
+    const timerObj = document.getElementById("timer");
+    if (timerObj) {
+        timerObj.innerHTML = diffBday > 0 ? `⏳ ${d}d ${h}h ${m}m ${s}s to go! ✨` : "🎉 Happy Birthday! 🎉";
+    }
 }, 1000);
 
-// 3. Motivation Quotes
+// 3. Random Motivation Quotes
 const quotes = [
     "You are stronger than you think, my baby! 💪",
     "Don't give up, I'm always by your side. 💙",
     "Your smile makes my whole world shine. ✨",
-    "Believe in yourself as much as I believe in you. 🌟"
+    "Believe in yourself as much as I believe in you. 🌟",
+    "Take a deep breath. You're doing great! ❤️"
 ];
 function showRandomQuote() {
     document.getElementById("motivation-box").innerText = quotes[Math.floor(Math.random() * quotes.length)];
 }
 
 // 4. Scratch Card Logic
-const coupons = ["Forehead Kiss 💋", "Neck Kiss 💋", "Lip Kiss 💋", "Hand Kiss 💋", "Cheek Kiss 💋"];
+const coupons = ["Forehead Kiss 💋", "Neck Kiss 💋", "Lip Kiss 💋", "Hand Kiss 💋", "Cheek Kiss 💋", "Ear Kiss 💋"];
 function showScratchCard() {
     document.getElementById("scratch-container").style.display = "block";
     document.getElementById("coupon-result").innerText = coupons[Math.floor(Math.random() * coupons.length)];
     const canvas = document.getElementById("scratchCanvas");
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#C0C0C0"; ctx.fillRect(0, 0, 200, 100);
+    
+    // Create Silver Cover
+    ctx.fillStyle = "#C0C0C0";
+    ctx.fillRect(0, 0, 200, 100);
     
     let isDrawing = false;
-    canvas.addEventListener("mousedown", () => isDrawing = true);
-    canvas.addEventListener("mousemove", (e) => {
+    const scratch = (e) => {
         if (!isDrawing) return;
         const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX || e.touches[0].clientX) - rect.left;
+        const y = (e.clientY || e.touches[0].clientY) - rect.top;
         ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath(); ctx.arc(e.clientX - rect.left, e.clientY - rect.top, 15, 0, Math.PI * 2); ctx.fill();
-    });
+        ctx.beginPath();
+        ctx.arc(x, y, 15, 0, Math.PI * 2);
+        ctx.fill();
+    };
+
+    canvas.addEventListener("mousedown", () => isDrawing = true);
+    canvas.addEventListener("touchstart", () => isDrawing = true);
+    canvas.addEventListener("mousemove", scratch);
+    canvas.addEventListener("touchmove", scratch);
     canvas.addEventListener("mouseup", () => isDrawing = false);
+    canvas.addEventListener("touchend", () => isDrawing = false);
 }
 
-// 5. Secret Yellow Heart
-function initSecretHeart() {
-    const heart = document.getElementById("secretHeart");
-    heart.style.top = Math.random() * 80 + "vh";
-    heart.style.left = Math.random() * 80 + "vw";
-}
-function showSecretMessage() {
-    const messages = ["I love you more than words can say. 💛", "You're the best thing that ever happened to me. 💛"];
-    showModal(`<h3>Secret Message 💛</h3><p>${messages[Math.floor(Math.random() * messages.length)]}</p>`);
+// 5. Music Control
+function toggleMusic() {
+    const song = document.getElementById("mySong");
+    const btn = document.getElementById("playBtn");
+    if (song.paused) {
+        song.play();
+        btn.innerHTML = "သီချင်းပိတ်ရန် 🔇";
+    } else {
+        song.pause();
+        btn.innerHTML = "သီချင်းနားထောင်ရန် 🎵";
+    }
 }
 
-// 6. File Upload to Drive (Conceptual for Frontend)
-async function uploadFile(input) {
+// 6. Drive Upload (Placeholder)
+function uploadFile(input) {
     const status = document.getElementById("uploadStatus");
     status.innerText = "သိမ်းဆည်းနေပါသည်... ⏳";
-    // ဒီအပိုင်းမှာ Google Apps Script URL ကို ချိတ်ရပါမယ်
-    setTimeout(() => { 
-        status.innerText = "Drive ထဲသို့ အမှတ်တရ သိမ်းဆည်းပြီးပါပြီ! ✅"; 
-        confetti();
+    setTimeout(() => {
+        status.innerText = "Drive ထဲသို့ အမှတ်တရ သိမ်းဆည်းပြီးပါပြီ! ✅";
+        confetti({ particleCount: 50 });
     }, 2000);
 }
 
-// Helper Functions
-function showModal(html) {
-    document.getElementById("modal-body").innerHTML = html;
+// Helpers
+function celebrate() {
+    confetti({ particleCount: 200, spread: 80 });
+    document.getElementById("modal-body").innerHTML = `
+        <h2 style="font-family: 'Gochi Hand', cursive; color: #2e86c1;">Happy Birthday! 🎂</h2>
+        <p>ပုတုတုရေ... ဒီနေ့မှာ ကျရောက်တဲ့ မွေးနေ့ကစပြီး အရမ်းပျော်ရွှင်ပါစေ။ ကိုကို မင်းကို အရမ်းချစ်တယ်။</p>
+    `;
     document.getElementById("loveLetterModal").style.display = "block";
 }
 function closeModal() { document.getElementById("loveLetterModal").style.display = "none"; }
-function celebrate() { confetti(); showModal("<h2>Happy Birthday! 🎂</h2><p>ပုတုတုရေ... ကိုကို မင်းကို အရမ်းချစ်တယ်။</p>"); }
-function toggleMusic() { const s = document.getElementById("mySong"); if (s.paused) s.play(); else s.pause(); }
 
 // Heart Rain
 setInterval(() => {
-    const h = document.createElement("div"); h.className = "heart"; h.innerHTML = "💙";
-    h.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(h); setTimeout(() => h.remove(), 4000);
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💙";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 15 + 10 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
 }, 500);
