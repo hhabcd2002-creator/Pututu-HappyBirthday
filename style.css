@@ -11,33 +11,36 @@ body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: va
 /* Lock Screen */
 #lockScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-gradient); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100000; text-align: center; }
 .lock-box { width: 85%; max-width: 350px; }
-.lock-title { color: var(--dark-blue); font-family: 'Fredoka', sans-serif; font-size: 32px; }
-#passwordInput { width: 100%; padding: 15px; border-radius: 50px; border: none; margin-bottom: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.lock-title { color: var(--dark-blue); font-family: 'Fredoka', sans-serif; font-size: 32px; line-height: 1.2; margin-bottom: 15px; }
+#passwordInput { width: 100%; padding: 15px; border-radius: 50px; border: none; margin-bottom: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); outline: none; }
 .unlock-btn { width: 100%; padding: 15px; border-radius: 50px; border: none; background: var(--dark-blue); color: white; cursor: pointer; font-weight: 600; }
 
 /* Main Content */
 .container { width: 100%; max-width: 450px; background: white; padding: 20px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
 .timer-wrapper { background: linear-gradient(135deg, var(--primary-blue), #aed6f1); padding: 18px; border-radius: 20px; color: white; margin-bottom: 25px; }
-.quote-style { font-family: 'Gochi Hand', cursive; color: var(--dark-blue); font-size: 1.2rem; margin: 20px 0; padding: 10px; background: var(--soft-blue); border-radius: 10px; }
 
 /* Photo Grid */
-.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-.photo-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; }
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+.photo-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+/* Motivation Quote */
+.quote-style { font-family: 'Gochi Hand', cursive; color: var(--dark-blue); font-size: 1.2rem; margin: 30px 0 15px 0; padding: 15px; background: var(--soft-blue); border-radius: 15px; line-height: 1.4; }
 
 /* Scratch Card */
-#scratch-container { position: relative; width: 200px; height: 100px; margin: 20px auto; }
+#scratch-container { position: relative; width: 200px; height: 100px; margin: 15px auto; }
 #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 2; cursor: crosshair; }
-#coupon-result { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #fff; border: 2px dashed var(--primary-blue); font-weight: bold; color: var(--dark-blue); z-index: 1; }
-
-/* Secret Heart */
-#secretHeart { position: fixed; font-size: 25px; cursor: pointer; z-index: 999; transition: transform 0.3s; filter: drop-shadow(0 0 5px gold); }
+#coupon-result { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #fff; border: 2px dashed var(--primary-blue); border-radius: 10px; font-weight: bold; color: var(--dark-blue); }
 
 /* Buttons */
-.upload-btn { background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-size: 12px; }
-#surpriseBtn { background: var(--dark-blue); color: white; border: none; padding: 12px 35px; border-radius: 50px; margin-top: 25px; cursor: pointer; }
+.upload-btn { background: #3498db; color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-size: 13px; font-weight: 600; }
+#surpriseBtn { background: var(--dark-blue); color: white; border: none; padding: 12px 40px; border-radius: 50px; font-family: 'Fredoka', sans-serif; font-size: 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(46,134,193,0.3); }
 
-/* Modal & Hearts */
+/* Modal */
 .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
-.modal-content { background: #f4faff; margin: 15vh auto; padding: 30px; width: 85%; max-width: 350px; border-radius: 20px; position: relative; }
-.heart { position: fixed; bottom: -50px; z-index: 9999; animation: moveUp 4s linear forwards; pointer-events: none; }
+.modal-content { background: #f4faff; margin: 15vh auto; padding: 30px; width: 85%; max-width: 350px; border-radius: 20px; position: relative; animation: zoomIn 0.3s; }
+@keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.close-btn { position: absolute; right: 15px; top: 10px; font-size: 25px; cursor: pointer; color: var(--dark-blue); }
+
+/* Hearts */
+.heart { position: fixed; bottom: -50px; font-size: 20px; z-index: 9999; animation: moveUp 4s linear forwards; pointer-events: none; }
 @keyframes moveUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
