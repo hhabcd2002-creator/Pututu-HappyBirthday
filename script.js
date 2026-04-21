@@ -1,38 +1,30 @@
-// 1. Password Check (2542003)
+// 1. Password Verification (2542003)
 function checkPassword() {
     const pass = document.getElementById("passwordInput").value;
-    const lockScreen = document.getElementById("lockScreen");
-    const mainContent = document.getElementById("mainContent");
-    const errorMsg = document.getElementById("errorMsg");
-    const song = document.getElementById("mySong");
-
     if (pass === "2542003") {
-        lockScreen.style.display = "none";
-        mainContent.style.display = "block";
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
         
-        // Auto-play song (Optional)
-        song.play().catch(e => console.log("Click play button to start music"));
+        // Auto-play music (browser block ဖြစ်နိုင်လို့ catch ဖမ်းထားတာပါ)
+        const song = document.getElementById("mySong");
+        song.play().catch(() => console.log("Music play blocked"));
     } else {
-        errorMsg.style.display = "block";
+        document.getElementById("errorMsg").style.display = "block";
     }
 }
 
-// Enter key support
-document.getElementById("passwordInput").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") checkPassword();
-});
-
-// 2. Timers
+// 2. Together Day Counter & Birthday Timer
 const startDate = new Date("2025-07-14T00:00:00");
 const targetDate = new Date("April 25, 2026 00:00:00").getTime();
 
 setInterval(() => {
     const now = new Date();
     
-    // Day Counter
+    // Together for XX Days
     const diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-    document.getElementById("anniversary-counter").innerHTML = `Together for: ${diffDays} Days 💙`;
+    const dayCounter = document.getElementById("anniversary-counter");
+    if (dayCounter) dayCounter.innerHTML = `Together for: ${diffDays} Days 💙`;
 
     // Birthday Countdown
     const diff = targetDate - now.getTime();
@@ -47,19 +39,20 @@ setInterval(() => {
     }
 }, 1000);
 
-// 3. Stitch Slider Movement
+// 3. Surfing Stitch Movement
 const slider = document.getElementById('photoSlider');
 const stitch = document.querySelector('.surfing-stitch');
 
 if (slider && stitch) {
     slider.addEventListener('scroll', () => {
         const scrollWidth = slider.scrollWidth - slider.clientWidth;
+        // Stitch ရွေ့မယ့် အကွာအဝေးကို တွက်တာပါ (85% အထိ)
         const scrollPercentage = (slider.scrollLeft / scrollWidth) * 85; 
         stitch.style.left = scrollPercentage + '%';
     });
 }
 
-// 4. Floating Hearts
+// 4. Floating Hearts (နှလုံးသားလေးတွေ လွင့်တက်နေတာ)
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
