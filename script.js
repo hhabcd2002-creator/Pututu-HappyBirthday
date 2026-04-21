@@ -6,7 +6,6 @@ function checkPassword() {
         document.getElementById("mainContent").style.display = "block";
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
         
-        // Show Motivation Box & Random Quote
         const quoteBox = document.getElementById("motivation-box");
         quoteBox.style.display = "block";
         showRandomQuote();
@@ -48,7 +47,7 @@ function showRandomQuote() {
     document.getElementById("motivation-box").innerText = quotes[Math.floor(Math.random() * quotes.length)];
 }
 
-// 4. Scratch Card Fix (Mobile & PC Friendly)
+// 4. Scratch Card (Mobile & PC Friendly)
 const coupons = ["Forehead Kiss 💋", "Neck Kiss 💋", "Lip Kiss 💋", "Hand Kiss 💋", "Cheek Kiss 💋", "Ear Kiss 💋"];
 
 function showScratchCard() {
@@ -82,7 +81,6 @@ function showScratchCard() {
     canvas.addEventListener("touchstart", (e) => { isDrawing = true; scratch(e); e.preventDefault(); }, {passive: false});
     canvas.addEventListener("touchmove", (e) => { scratch(e); e.preventDefault(); }, {passive: false});
     canvas.addEventListener("touchend", () => isDrawing = false);
-
     canvas.addEventListener("mousedown", (e) => { isDrawing = true; scratch(e); });
     canvas.addEventListener("mousemove", (e) => scratch(e));
     window.addEventListener("mouseup", () => isDrawing = false);
@@ -96,11 +94,11 @@ function toggleMusic() {
     else { song.pause(); btn.innerHTML = "သီချင်းနားထောင်ရန် 🎵"; }
 }
 
-// 6. Real Google Drive Upload Logic
+// 6. Google Drive Upload (Final Integrated)
 async function uploadFile(input) {
+    if (!input.files || !input.files[0]) return;
+    
     const file = input.files[0];
-    if (!file) return;
-
     const status = document.getElementById("uploadStatus");
     status.innerText = "သိမ်းဆည်းနေပါသည်... ⏳";
 
@@ -115,19 +113,18 @@ async function uploadFile(input) {
         };
 
         try {
-            // ကိုကိုပေးတဲ့ Web App URL ကို သုံးထားပါတယ်
-            const response = await fetch("https://script.google.com/macros/s/AKfycbzw4fTV5xixNWZRk0tJYuGpdIT6RjYVF4UvXG5EeGsyHOMRKFryPw2m3Smhc8PC3Duxlg/exec", {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbyiIRr80ePlZdmM-yWWLUzs5WUgBY7bcCd-JzpRgXIgFlraHYxgKKZ9C5S9UW9euGlJHQ/exec", {
                 method: "POST",
-                mode: "no-cors", // Google Apps Script အတွက် no-cors သုံးရတတ်ပါတယ်
+                mode: "no-cors", // Apps Script require no-cors for simple fetches
                 body: JSON.stringify(data)
             });
 
-            // no-cors ဖြစ်လို့ response status ကို စစ်လို့မရပေမယ့် ပုံမှန်ဆိုရင် ရောက်သွားပါပြီ
+            // "no-cors" mode မှာ response ကို direct ဖတ်လို့မရပေမယ့် Success လို့ပဲ ယူဆလိုက်ပါမယ်
             status.innerText = "Drive ထဲသို့ အမှတ်တရ သိမ်းဆည်းပြီးပါပြီ! ✅";
-            confetti({ particleCount: 50 });
+            confetti({ particleCount: 50, spread: 50 });
+            
         } catch (error) {
-            status.innerText = "Error တက်သွားပါတယ်။ နောက်တစ်ခေါက် ပြန်စမ်းကြည့်ပါဦး။";
-            console.error(error);
+            status.innerText = "လိုင်းမကောင်းလို့ နောက်တစ်ခေါက် ပြန်လုပ်ကြည့်ပါဦး။";
         }
     };
 }
